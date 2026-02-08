@@ -1,0 +1,255 @@
+/* src/app/components/hero/hero.scss */
+
+/* page layout */
+.car-detail-page {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 1.25rem;
+  padding: 1.25rem;
+  max-width: 1100px;
+  margin: 1rem auto;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+}
+
+/* responsive stack */
+@media (max-width: 900px) {
+  .car-detail-page {
+    grid-template-columns: 1fr;
+    padding: 0.8rem;
+  }
+}
+
+/* media / hero image area */
+.detail-media {
+  .media-hero {
+    background: #fff;
+    border-radius: 10px;
+    padding: 0.75rem;
+    box-shadow: 0 6px 18px rgba(2,6,23,0.06);
+  }
+
+  .hero-image-wrap {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 320px;
+  }
+
+  .hero-image {
+    width: 100%;
+    height: auto;
+    max-height: 560px;
+    object-fit: cover;
+    display: block;
+    cursor: zoom-in;
+    transition: transform 240ms ease;
+  }
+
+  .hero-image-wrap:hover .hero-image {
+    transform: scale(1.01);
+  }
+
+  /* hero arrows */
+  .hero-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 20;
+    background: rgba(255,255,255,0.92);
+    border: 0;
+    width: 44px;
+    height: 44px;
+    border-radius: 999px;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    font-size: 22px;
+    color: #111;
+  }
+  .hero-arrow.left { left: 10px; }
+  .hero-arrow.right { right: 10px; }
+
+  /* dots under main image */
+  .hero-dots {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin-top: 0.75rem;
+  }
+  .hero-dots button {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 0;
+    background: rgba(0,0,0,0.12);
+    cursor: pointer;
+  }
+  .hero-dots button.active {
+    background: #06b6d4;
+    transform: scale(1.15);
+  }
+
+  /* thumbnails */
+  .thumbs {
+    margin-top: 0.85rem;
+    display: flex;
+    gap: 0.5rem;
+    overflow-x: auto;
+    padding-bottom: 6px;
+  }
+  .thumb-btn {
+    border: 1px solid #e6e6e6;
+    padding: 4px;
+    border-radius: 6px;
+    background: #fff;
+    cursor: pointer;
+    flex: 0 0 auto;
+  }
+  .thumb-btn img {
+    width: 84px;
+    height: 56px;
+    object-fit: cover;
+    display: block;
+    border-radius: 4px;
+  }
+  .thumb-btn.active {
+    outline: 3px solid rgba(6,182,212,0.15);
+    transform: translateY(-2px);
+  }
+}
+
+/* details & price box */
+.detail-info {
+  background: #fff;
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: 0 6px 18px rgba(2,6,23,0.06);
+  position: relative;
+  min-height: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.back-btn {
+  align-self: flex-start;
+  background: transparent;
+  border: 0;
+  color: #374151;
+  cursor: pointer;
+  font-size: 0.95rem;
+  padding: 6px 8px;
+}
+
+.car-name {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.meta {
+  display: grid;
+  gap: 6px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  font-size: 0.95rem;
+  color: #374151;
+}
+
+.description {
+  color: #4b5563;
+  font-size: 0.95rem;
+}
+
+/* price box */
+.price-box {
+  margin-top: auto;
+  border-top: 1px dashed #eef2f7;
+  padding-top: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+}
+
+.price {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #0f172a;
+}
+.price span { font-size: 0.9rem; color: #6b7280; font-weight: 600; margin-left: 6px; }
+
+.actions {
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+}
+
+.btn-add, .btn-book {
+  border: 0;
+  padding: 0.65rem 0.9rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.btn-add {
+  background: #06b6d4;
+  color: #07203b;
+}
+
+.btn-book {
+  background: transparent;
+  border: 1px solid #e6e6e6;
+  color: #111827;
+}
+
+/* zoom overlay */
+.zoom-overlay {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: rgba(2,6,23,0.7);
+  z-index: 1200;
+}
+
+.zoom-inner {
+  max-width: 95%;
+  max-height: 95%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6rem;
+  border-radius: 8px;
+  background: #000;
+}
+
+.zoom-inner img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 4px;
+}
+
+.zoom-close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 30;
+  background: rgba(255,255,255,0.92);
+  border: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.16);
+}

@@ -1,0 +1,26 @@
+<div class="checkout" *ngIf="items.length === 1; else emptyCart">
+  <h2>Checkout</h2>
+
+  <h3>{{ items[0].name }}</h3>
+
+  <label>
+    Start date:
+    <input type="date" [(ngModel)]="startDate" />
+  </label>
+
+  <label>
+    End date:
+    <input type="date" [(ngModel)]="endDate" [min]="startDate || ''" />
+  </label>
+
+  <button (click)="submit()" class="btn-primary" [disabled]="loading">
+    {{ loading ? 'Booking…' : 'Confirm Booking' }}
+  </button>
+</div>
+
+<ng-template #emptyCart>
+  <div class="empty-cart">
+    <p>Your cart is empty.</p>
+    <a routerLink="/">Go back to home</a>
+  </div>
+</ng-template>

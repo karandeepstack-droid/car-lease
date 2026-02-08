@@ -1,0 +1,59 @@
+<div class="auth-page">
+  <div class="auth-card">
+    <h1>Create account</h1>
+    <p>Register a new account to save bookings and access checkout.</p>
+
+    <form [formGroup]="form" (ngSubmit)="submit()" class="auth-form" autocomplete="on" novalidate>
+
+      <label>
+        Full name
+        <input type="text" formControlName="name" />
+        <div class="field-error" *ngIf="name?.touched && name?.invalid">
+          <small *ngIf="name?.errors?.['required']">Name is required.</small>
+          <small *ngIf="name?.errors?.['minlength']">Enter a valid name.</small>
+        </div>
+      </label>
+
+      <label>
+        Email
+        <input type="email" formControlName="email" />
+        <div class="field-error" *ngIf="email?.touched && email?.invalid">
+          <small *ngIf="email?.errors?.['required']">Email is required.</small>
+          <small *ngIf="email?.errors?.['email']">Enter a valid email address.</small>
+        </div>
+      </label>
+
+      <label>
+        Password
+        <input type="password" formControlName="password" />
+        <div class="field-error" *ngIf="password?.touched && password?.invalid">
+          <small *ngIf="password?.errors?.['required']">Password is required.</small>
+          <small *ngIf="password?.errors?.['minlength']">Password must be at least 6 characters.</small>
+        </div>
+      </label>
+
+      <label>
+        Confirm password
+        <input type="password" formControlName="confirmPassword" />
+        <div class="field-error" *ngIf="confirmPassword?.touched && (confirmPassword?.invalid || !passwordsMatch())">
+          <small *ngIf="confirmPassword?.errors?.['required']">Confirm your password.</small>
+          <small *ngIf="!passwordsMatch()">Passwords do not match.</small>
+        </div>
+      </label>
+
+      <label class="row">
+        <input type="checkbox" formControlName="remember" />
+        <span>Remember me</span>
+      </label>
+
+      <button type="submit" class="btn-primary"
+        [disabled]="loading || form.invalid || !passwordsMatch()">
+        {{ loading ? 'Creating…' : 'Create account' }}
+      </button>
+    </form>
+
+    <div class="note">
+      Already have an account? <a [routerLink]="['/login']">Sign in</a>
+    </div>
+  </div>
+</div>

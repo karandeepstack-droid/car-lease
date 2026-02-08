@@ -1,0 +1,101 @@
+/* src/app/shared/sidebar.component.scss */
+:host { all: initial; display: block; }
+
+/* overlay */
+.sidebar-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(2,6,23,0.45);
+  z-index: 1200;
+}
+
+/* sidebar */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 320px;
+  max-width: 85%;
+  height: 100vh;
+  transform: translateX(-110%);
+  transition: transform 260ms cubic-bezier(.2,.9,.2,1);
+  background: #fff;
+  z-index: 1250;
+  box-shadow: 0 10px 40px rgba(2,6,23,0.16);
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+}
+
+/* when open */
+.sidebar.open {
+  transform: translateX(0);
+}
+
+/* header / top */
+.sidebar-top {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.close-btn{
+  background: transparent;
+  border: 0;
+  font-size: 22px;
+  cursor: pointer;
+  padding: 6px;
+}
+
+/* list */
+.sidebar-list {
+  list-style: none;
+  padding: 6px;
+  margin: 6px 0 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sidebar-item a {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 10px 8px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #111827;
+  font-weight: 600;
+}
+
+.sidebar-item a:hover {
+  background: #f3f4f6;
+}
+
+.sidebar-item .icon {
+  background: #f3f4f6;
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+/* separator */
+.sidebar-sep { height: 1px; background: #eef2f7; margin: 8px 6px; border-radius: 2px; }
+
+/* footer */
+.sidebar-footer {
+  margin-top: auto;
+  padding: 8px;
+  font-size: 0.85rem;
+  color: #6b7280;
+  text-align: center;
+}
+
+/* responsive tweaks */
+@media (max-width: 480px) {
+  .sidebar { width: 86%; }
+  .sidebar-item a { padding: 12px; }
+}

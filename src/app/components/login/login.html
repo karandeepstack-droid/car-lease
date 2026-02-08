@@ -1,0 +1,38 @@
+<!-- src/app/components/login/login.html -->
+<div class="auth-page">
+  <div class="auth-card">
+    <h1>Welcome back</h1>
+    <p>Sign in to continue to CarLease</p>
+
+    <form [formGroup]="form" (ngSubmit)="submit()" class="auth-form" autocomplete="on" novalidate>
+      <label>
+        Email
+        <input type="email" formControlName="email" />
+        <div class="field-error" *ngIf="email?.touched && email?.invalid">
+          <small *ngIf="email?.errors?.['required']">Email is required.</small>
+          <small *ngIf="email?.errors?.['email']">Enter a valid email.</small>
+        </div>
+      </label>
+
+      <label>
+        Password
+        <input type="password" formControlName="password" />
+        <div class="field-error" *ngIf="password?.touched && password?.invalid">
+          <small *ngIf="password?.errors?.['required']">Password is required.</small>
+        </div>
+      </label>
+
+      <label class="row">
+        <input type="checkbox" formControlName="remember" />
+        <span>Remember me</span>
+      </label>
+
+      <button type="submit" class="btn-primary">Sign in</button>
+
+    </form>
+
+    <div class="note">
+      Don't have an account? <a [routerLink]="['/']">Continue as guest</a>
+    </div>
+  </div>
+</div>

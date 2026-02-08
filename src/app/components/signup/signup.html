@@ -1,0 +1,41 @@
+<div class="signup-form">
+  <h2>Create account</h2>
+  <p>Register a new account to save bookings and access checkout.</p>
+
+  <form #form="ngForm" (ngSubmit)="submit(form)">
+    <label>
+      Full name
+      <input type="text" name="fullName" [(ngModel)]="fullName" required />
+    </label>
+
+    <label>
+      Email
+      <input type="email" name="email" [(ngModel)]="email" required />
+    </label>
+
+    <label>
+      Password
+      <input type="password" name="password" [(ngModel)]="password" required minlength="6" />
+    </label>
+
+    <label>
+      Confirm password
+      <input type="password" name="confirmPassword" [(ngModel)]="confirmPassword" required minlength="6" />
+    </label>
+
+    <label class="remember">
+      <input type="checkbox" [(ngModel)]="remember" name="remember" />
+      Remember me
+    </label>
+
+    <button type="submit" [disabled]="loading">
+      {{ loading ? 'Signing up…' : 'Create account' }}
+    </button>
+  </form>
+
+  <p>
+    Already have an account?
+    <a routerLink="/login">Sign in</a>
+  </p>
+</div>
+

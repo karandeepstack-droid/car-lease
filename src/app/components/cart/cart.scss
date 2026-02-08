@@ -1,0 +1,94 @@
+/* src/app/components/cart/cart.scss */
+.cart-page {
+  padding: 1rem;
+  max-width: 980px;
+  margin: 0 auto;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+
+  h1 { margin-bottom: 1rem; }
+
+  .cart-list {
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #fff;
+
+    .cart-row {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr 0.8fr;
+      gap: 8px;
+      padding: 0.6rem 0.8rem;
+      align-items: center;
+      border-bottom: 1px solid #f3f4f6;
+
+      &.header {
+        background: #f9fafb;
+        font-weight: 700;
+      }
+
+      .col {
+        &.qty {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+
+          input {
+            width: 56px;
+            padding: 6px;
+            border-radius: 6px;
+            border: 1px solid #e5e7eb;
+            text-align: center;
+          }
+
+          button {
+            border: 0;
+            padding: 6px 8px;
+            border-radius: 6px;
+            cursor: pointer;
+          }
+        }
+
+        button {
+          background: transparent;
+          border: 1px solid #e5e7eb;
+          padding: 6px 8px;
+          border-radius: 6px;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  .cart-summary {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .total { font-weight: 800; font-size: 1.05rem; }
+
+    .summary-actions {
+      display: flex;
+      gap: 0.6rem;
+
+      button {
+        padding: 0.6rem 0.9rem;
+        border-radius: 8px;
+        border: 0;
+        cursor: pointer;
+      }
+
+      .checkout {
+        background: #111827;
+        color: #fff;
+      }
+    }
+  }
+
+  .cart-empty {
+    text-align: center;
+    padding: 3rem 1rem;
+    background: #fff;
+    border-radius: 6px;
+  }
+}

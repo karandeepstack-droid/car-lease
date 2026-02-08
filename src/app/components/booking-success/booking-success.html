@@ -1,0 +1,39 @@
+<div class="success-wrapper" *ngIf="booking">
+  <h1>Booking Confirmed 🎉</h1>
+  <p class="muted">Your car has been successfully booked.</p>
+
+  <div class="card">
+    <div class="grid">
+      <div>
+        <div class="label">Booking ID</div>
+        <div class="value code">{{ booking._id }}</div>
+      </div>
+
+      <div>
+        <div class="label">Car</div>
+        <div class="value">
+          {{ booking.car.make }} {{ booking.car.model }} – {{ booking.car.name }}
+        </div>
+      </div>
+
+      <div>
+        <div class="label">Start Date</div>
+        <div class="value">{{ booking.startDate | date }}</div>
+      </div>
+
+      <div>
+        <div class="label">End Date</div>
+        <div class="value">{{ booking.endDate | date }}</div>
+      </div>
+
+      <div>
+        <div class="label">Total Price</div>
+        <div class="value">₹ {{ booking.totalPrice }}</div>
+      </div>
+    </div>
+  </div>
+
+  <button routerLink="/" class="btn">
+    Back to Home
+  </button>
+</div>

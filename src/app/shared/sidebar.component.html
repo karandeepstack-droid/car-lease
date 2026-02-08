@@ -1,0 +1,65 @@
+<!-- src/app/shared/sidebar.component.html -->
+<div class="sidebar-overlay" *ngIf="open" (click)="close()" aria-hidden="true"></div>
+
+<aside class="sidebar" [class.open]="open" role="navigation" aria-label="Main menu">
+  <div class="sidebar-top">
+    <button class="close-btn" (click)="close()" aria-label="Close menu">✕</button>
+  </div>
+
+  <ul class="sidebar-list">
+    <li class="sidebar-item">
+      <a routerLink="/login" (click)="close()">
+        <span class="icon">👤</span>
+        <span class="text">Login or Signup</span>
+      </a>
+    </li>
+
+    <li class="sidebar-item">
+      <a (click)="close()" routerLink="/become-host">
+        <span class="icon">🏠</span>
+        <span class="text">Become a Host</span>
+      </a>
+    </li>
+
+    <li class="sidebar-sep"></li>
+
+    <li class="sidebar-item">
+      <a (click)="close()" routerLink="/investor-relations">
+        <span class="icon">🏢</span>
+        <span class="text">Investor Relations</span>
+      </a>
+    </li>
+
+    <li class="sidebar-item">
+      <a (click)="close()" routerLink="/press">
+        <span class="icon">📰</span>
+        <span class="text">Press Releases</span>
+      </a>
+    </li>
+
+    <li class="sidebar-item">
+      <a (click)="close()" routerLink="/policies">
+        <span class="icon">📜</span>
+        <span class="text">Host Vehicles Policies</span>
+      </a>
+    </li>
+
+    <li class="sidebar-item">
+      <a (click)="close()" routerLink="/help">
+        <span class="icon">📞</span>
+        <span class="text">Help & Support</span>
+      </a>
+    </li>
+
+    <li class="sidebar-item">
+      <a (click)="close()" routerLink="/blogs">
+        <span class="icon">✍️</span>
+        <span class="text">Blogs</span>
+      </a>
+    </li>
+  </ul>
+
+  <div class="sidebar-footer">
+    <small>© CarLease</small>
+  </div>
+</aside>

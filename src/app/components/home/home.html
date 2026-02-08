@@ -1,0 +1,77 @@
+<div class="home-hero" (mouseenter)="stopHeaderSlideshow()" (mouseleave)="startHeaderSlideshow()">
+  <ng-container *ngFor="let img of headerImages; let i = index">
+    <div class="hero-bg" [class.active]="i === currentHeaderIndex" [style.backgroundImage]="'url(' + img + ')'"></div>
+  </ng-container>
+  <div class="hero-overlay"></div>
+
+  <div class="hero-inner">
+    <h1>Find cars near you</h1>
+    <p>Choose a car, pick dates, and hit the road.</p>
+
+    <form class="hero-search" (ngSubmit)="applyHeroSearch()">
+      <input type="text" [(ngModel)]="heroQuery" name="heroQ" (input)="onHeroInput()" placeholder="Enter city or car" />
+      <input type="date" [(ngModel)]="heroStart" name="heroStart" [min]="today" (change)="onHeroInput()" />
+      <input type="date" [(ngModel)]="heroEnd" name="heroEnd" [min]="heroStart || today" (change)="onHeroInput()" />
+      <button type="submit" class="primary">Search</button>
+    </form>
+
+    <div class="quick-links">
+      <button (click)="quickSearch('Delhi')">Delhi</button>
+      <button (click)="quickSearch('Bengaluru')">Bengaluru</button>
+      <button (click)="quickSearch('Mumbai')">Mumbai</button>
+      <button (click)="quickSearch('Hyderabad')">Hyderabad</button>
+    </div>
+  </div>
+</div>
+
+<div class="home-container">
+  <section class="section-head">
+    <h2>Available cars</h2>
+    <div class="view-note">
+      <div class="small-note">Showing results matching <strong>{{ activeFilterLabel || 'all' }}</strong></div>
+      <div class="small-note">You can add cars to cart from either view.</div>
+    </div>
+  </section>
+
+  <!-- GRID view -->
+  <section class="cars-grid">
+    <article class="car-card" *ngFor="let car of displayedCars$ | async">
+      <div class="card-media">
+        <img [src]="car.image || '/assets/cars/car1.jpg'" [alt]="car.name" />
+      </div>
+      <div class="card-body">
+        <h3 class="car-title">{{ car.name || (car.make + ' ' + car.model) }}</h3>
+        <p class="car-price">₹ {{ car.pricePerDay || 0 }} / day</p>
+        <p class="car-specs">{{ car.seats || '-'}} seats • {{ car.transmission || '-' }} • {{ car.fuel || '-' }}</p>
+        <div class="card-actions">
+          <button (click)="addToCart(car)">Add to cart</button>
+          <button [routerLink]="['/car', car._id]">View details</button>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <!-- CAROUSEL view -->
+  <section class="cars-carousel">
+    <button class="carousel-btn prev" (click)="scrollPrev()" [disabled]="!canScrollLeft">‹</button>
+    <div #carousel class="carousel-track" role="list" (mouseenter)="stopAutoplay()" (mouseleave)="startAutoplay()">
+      <article class="car-card" *ngFor="let car of displayedCars$ | async" role="listitem">
+        <div class="card-media"><img [src]="car.image || '/assets/cars/car1.jpg'" [alt]="car.name" /></div>
+        <div class="card-body">
+          <h3 class="car-title">{{ car.name || (car.make + ' ' + car.model) }}</h3>
+          <p class="car-price">₹ {{ car.pricePerDay || 0 }} / day</p>
+          <p class="car-specs">{{ car.seats || '-'}} seats • {{ car.transmission || '-' }} • {{ car.fuel || '-' }}</p>
+          <div class="card-actions">
+            <button (click)="addToCart(car)">Add to cart</button>
+            <button [routerLink]="['/car', car._id]">View details</button>
+          </div>
+        </div>
+      </article>
+    </div>
+    <button class="carousel-btn next" (click)="scrollNext()" [disabled]="!canScrollRight">›</button>
+
+    <div class="carousel-dots" *ngIf="pages > 1">
+      <button *ngFor="let _ of pagesArray(); let i = index" (click)="goToPage(i)" [class.active]="i === currentPage"></button>
+    </div>
+  </section>
+</div>

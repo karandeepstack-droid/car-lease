@@ -1,0 +1,21 @@
+<div class="cart-page" *ngIf="items.length === 1; else empty">
+  <h1>Selected Car</h1>
+
+  <div class="cart-card">
+    <h3>{{ items[0].name }}</h3>
+    <p>Price per day: ₹{{ items[0].price }}</p>
+
+    <div class="actions">
+      <button (click)="remove(items[0].id)">Remove</button>
+      <button class="checkout" (click)="checkout()">Proceed to checkout</button>
+    </div>
+  </div>
+</div>
+
+<ng-template #empty>
+  <div class="cart-empty">
+    <h2>No car selected</h2>
+    <p>Please select a car from the home page.</p>
+    <a routerLink="/">Go to Home</a>
+  </div>
+</ng-template>
